@@ -12,9 +12,7 @@
 $(function () {
     // initLayout();
     parentVerticalTab.initTab();
-    alert("de");
-    // serverTable.setTable();
-    // serverTable.searchTb();
+    serverTable.setTable();
     // initEvent();
     // validator.verify1();
     // isValid = false;// 验证标记
@@ -56,11 +54,12 @@ var serverTable = {
                 }
                 params.pageSize = params.limit;
                 params.pageNumber = pageNumber;
+                // params['condition_EQ_']
                 return params;
             }
         }
-        C.createTable("#bootstrapTable", Constants.CONTEXT_PATH
-            + '/domain/getPageList.do', settings);
+        C.createTable("#bootstrapTable", Constants.SERVER_IP
+            + '/passwordMgr/getSiteBootstrapTable', settings);
     },
     /**
      * 更新表格
@@ -69,20 +68,12 @@ var serverTable = {
         $("#bootstrapTable").bootstrapTable('refresh', {
             url: Constants.CONTEXT_PATH + '/domain/getPageList.do'
         });
-    },
-    /**
-     * 查询数据
-     */
-    searchTb: function () {
-        $("#search").click(function () {
-            serverTable.refreshTb();
-        });
     }
+
 }
 
 
 var parentVerticalTab = {
-
     initTab: function () {
         $('#parentVerticalTab').easyResponsiveTabs({
             type: 'vertical', //Types: default, vertical, accordion

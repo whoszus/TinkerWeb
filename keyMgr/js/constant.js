@@ -4,5 +4,7 @@
 
 
 var Constants = {
-    CONTEXT_PATH:'/'
+    CONTEXT_PATH:'/',
+    SERVER_IP:'http://127.0.0.1',
+
 }
