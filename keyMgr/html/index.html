@@ -31,7 +31,13 @@
         <div class="resp-tabs-container hor_1">
             <div>
                 <div>
+                    <div class="search">
+                        <label for="site_address">网站名或地址:</label>
+                        <input id="site_address" name="site_address" style="" value="">
 
+
+                        <input type="button" id="newSitePassword" value="新增密码">
+                    </div>
                     <table id="bootstrapTable" class="table table-bordered"
                            data-pagination="true" data-height="400" data-click-to-select="true">
                         <thead>
@@ -70,6 +76,13 @@
         </div>
     </div>
     <div class="clear"></div>
+</div>
+
+
+<div id="site_addingDialog" style="display: none">
+    <label for="site_address_adding">网站名或地址:</label>
+    <input id="site_address_adding" name="site_address" style="" value="">
+
 </div>
 
 
