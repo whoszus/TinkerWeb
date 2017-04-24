@@ -1,0 +1,419 @@
+/**
+ * @author zhixin wen <wenzhixin2010@gmail.com>
+ * version: 1.11.0
+ * https://github.com/wenzhixin/bootstrap-table/
+ */
+.bootstrap-table .table {
+  margin-bottom: 0 !important;
+  border-bottom: 1px solid #dddddd;
+  border-collapse: collapse !important;
+  border-radius: 1px;
+}
+
+.bootstrap-table .table:not(.table-condensed),
+.bootstrap-table .table:not(.table-condensed) > tbody > tr > th,
+.bootstrap-table .table:not(.table-condensed) > tfoot > tr > th,
+.bootstrap-table .table:not(.table-condensed) > thead > tr > td,
+.bootstrap-table .table:not(.table-condensed) > tbody > tr > td,
+.bootstrap-table .table:not(.table-condensed) > tfoot > tr > td {
+  padding: 8px;
+}
+
+.bootstrap-table .table.table-no-bordered > thead > tr > th,
+.bootstrap-table .table.table-no-bordered > tbody > tr > td {
+  border-right: 2px solid transparent;
+}
+
+.bootstrap-table .table.table-no-bordered > tbody > tr > td:last-child {
+  border-right: none;
+}
+
+.fixed-table-container {
+  position: relative;
+  clear: both;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+
+.fixed-table-container.table-no-bordered {
+  border: 1px solid transparent;
+}
+
+.fixed-table-footer,
+.fixed-table-header {
+  overflow: hidden;
+}
+
+.fixed-table-footer {
+  border-top: 1px solid #dddddd;
+}
+
+.fixed-table-body {
+  overflow-x: auto;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.fixed-table-container table {
+  width: 100%;
+}
+
+.fixed-table-container thead th {
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border-left: 1px solid #dddddd;
+}
+
+.fixed-table-container thead th:focus {
+  outline: 0 solid transparent;
+}
+
+.fixed-table-container thead th:first-child {
+  border-left: none;
+  border-top-left-radius: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+}
+
+.fixed-table-container thead th .th-inner,
+.fixed-table-container tbody td .th-inner {
+  padding: 8px;
+  line-height: 24px;
+  vertical-align: top;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fixed-table-container thead th .sortable {
+  cursor: pointer;
+  background-position: right;
+  background-repeat: no-repeat;
+  padding-right: 30px;
+}
+
+.fixed-table-container thead th .both {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAQAAADYWf5HAAAAkElEQVQoz7X QMQ5AQBCF4dWQSJxC5wwax1Cq1e7BAdxD5SL+Tq/QCM1oNiJidwox0355mXnG/DrEtIQ6azioNZQxI0ykPhTQIwhCR+BmBYtlK7kLJYwWCcJA9M4qdrZrd8pPjZWPtOqdRQy320YSV17OatFC4euts6z39GYMKRPCTKY9UnPQ6P+GtMRfGtPnBCiqhAeJPmkqAAAAAElFTkSuQmCC");
+}
+
+.fixed-table-container thead th .asc {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAZ0lEQVQ4y2NgGLKgquEuFxBPAGI2ahhWCsS/gDibUoO0gPgxEP8H4ttArEyuQYxAPBdqEAxPBImTY5gjEL9DM+wTENuQahAvEO9DMwiGdwAxOymGJQLxTyD+jgWDxCMZRsEoGAVoAADeemwtPcZI2wAAAABJRU5ErkJggg==");
+}
+
+.fixed-table-container thead th .desc {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAZUlEQVQ4y2NgGAWjYBSggaqGu5FA/BOIv2PBIPFEUgxjB+IdQPwfC94HxLykus4GiD+hGfQOiB3J8SojEE9EM2wuSJzcsFMG4ttQgx4DsRalkZENxL+AuJQaMcsGxBOAmGvopk8AVz1sLZgg0bsAAAAASUVORK5CYII= ");
+}
+
+.fixed-table-container th.detail {
+  width: 30px;
+}
+
+.fixed-table-container tbody td {
+  border-left: 1px solid #dddddd;
+}
+
+.fixed-table-container tbody tr:first-child td {
+  border-top: none;
+}
+
+.fixed-table-container tbody td:first-child {
+  border-left: none;
+}
+
+/* the same color with .active */
+.fixed-table-container tbody .selected td {
+  background-color: #f5f5f5;
+}
+
+.fixed-table-container .bs-checkbox {
+  text-align: center;
+}
+
+.fixed-table-container .bs-checkbox .th-inner {
+  padding: 8px 0;
+}
+
+.fixed-table-container input[type="radio"],
+.fixed-table-container input[type="checkbox"] {
+  margin: 0 auto !important;
+}
+
+.fixed-table-container .no-records-found {
+  text-align: center;
+}
+
+.fixed-table-pagination div.pagination,
+.fixed-table-pagination .pagination-detail {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.fixed-table-pagination div.pagination .pagination {
+  margin: 0;
+}
+
+.fixed-table-pagination .pagination a {
+  padding: 6px 12px;
+  line-height: 1.428571429;
+}
+
+.fixed-table-pagination .pagination-info {
+  line-height: 34px;
+  margin-right: 5px;
+}
+
+.fixed-table-pagination .btn-group {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.fixed-table-pagination .dropup .dropdown-menu {
+  margin-bottom: 0;
+}
+
+.fixed-table-pagination .page-list {
+  display: inline-block;
+}
+
+.fixed-table-toolbar .columns-left {
+  margin-right: 5px;
+}
+
+.fixed-table-toolbar .columns-right {
+  margin-left: 5px;
+}
+
+.fixed-table-toolbar .columns label {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.428571429;
+}
+
+.fixed-table-toolbar .bs-bars,
+.fixed-table-toolbar .search,
+.fixed-table-toolbar .columns {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 34px;
+}
+
+.fixed-table-pagination li.disabled a {
+  pointer-events: none;
+  cursor: default;
+}
+
+.fixed-table-loading {
+  display: none;
+  position: absolute;
+  top: 42px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  background-color: #fff;
+  text-align: center;
+}
+
+.fixed-table-body .card-view .title {
+  font-weight: bold;
+  display: inline-block;
+  min-width: 30%;
+  text-align: left !important;
+}
+
+/* support bootstrap 2 */
+.fixed-table-body thead th .th-inner {
+  box-sizing: border-box;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.fixed-table-toolbar .dropdown-menu {
+  text-align: left;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.fixed-table-toolbar .btn-group > .btn-group {
+  display: inline-block;
+  margin-left: -1px !important;
+}
+
+.fixed-table-toolbar .btn-group > .btn-group > .btn {
+  border-radius: 0;
+}
+
+.fixed-table-toolbar .btn-group > .btn-group:first-child > .btn {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.fixed-table-toolbar .btn-group > .btn-group:last-child > .btn {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.bootstrap-table .table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 1px solid #ddd;
+}
+
+/* support bootstrap 3 */
+.bootstrap-table .table thead > tr > th {
+  padding: 0;
+  margin: 0;
+}
+
+.bootstrap-table .fixed-table-footer tbody > tr > td {
+  padding: 0 !important;
+}
+
+.bootstrap-table .fixed-table-footer .table {
+  border-bottom: none;
+  border-radius: 0;
+  padding: 0 !important;
+}
+
+.pull-right .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+/* calculate scrollbar width */
+p.fixed-table-scroll-inner {
+  width: 100%;
+  height: 200px;
+}
+
+div.fixed-table-scroll-outer {
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  width: 200px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.bootstrap-table {
+  font-family: "Microsoft YaHei";
+}
+
+.bs-table .fixed-table-container {
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+}
+.bs-table .fixed-table-container .table.table-condensed > tbody > tr > td {
+  padding: 7.5px 5px;
+}
+.bs-table .fixed-table-container thead th, .bs-table .fixed-table-container .fixed-table-header {
+  /*background: $thBgColorGradientBase;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNWU1ZTUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top,  $thBgColor-gradient-start 0%, $thBgColor-gradient-end 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$thBgColor-gradient-start), color-stop(100%,$thBgColor-gradient-end));
+  background: -webkit-linear-gradient(top,  $thBgColor-gradient-start 0%,$thBgColor-gradient-end 100%);
+  background: -o-linear-gradient(top,  $thBgColor-gradient-start 0%,$thBgColor-gradient-end 100%);
+  background: -ms-linear-gradient(top,  $thBgColor-gradient-start 0%,$thBgColor-gradient-end 100%);
+  background: linear-gradient(to bottom,  $thBgColor-gradient-start 0%,$thBgColor-gradient-end 100%);*/
+  filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr='#f8f8f8',endColorStr='#f8f8f8');
+  background: #f5f5f5;
+  color: #333;
+}
+.bs-table .fixed-table-container thead th .th-inner, .bs-table .fixed-table-container tbody td .th-inner {
+  font-size: 13px;
+  color: #444;
+  line-height: 18px;
+}
+.bs-table .fixed-table-container tbody td {
+  font-size: 13px;
+  color: #666;
+}
+.bs-table .fixed-table-pagination .btn-group {
+  margin-top: -5px;
+}
+.bs-table .fixed-table-pagination .btn-group button, .bs-table .fixed-table-pagination .btn-group .btn {
+  padding: 2px 10px;
+}
+.bs-table .fixed-table-pagination .pagination a {
+  padding: 4px 10px;
+}
+.bs-table .fixed-table-pagination > .pagination-detail, .bs-table .fixed-table-pagination > .pagination-detail .btn, .bs-table .fixed-table-pagination > .pagination-detail button,
+.bs-table .fixed-table-pagination > .pagination-detail .dropdown-menu a {
+  font-size: 13px;
+}
+
+.bs-table.small .fixed-table-container thead th .th-inner, .bs-table.small .fixed-table-container tbody td .th-inner {
+  font-size: 12px;
+  color: #444;
+}
+.bs-table.small .fixed-table-container tbody td {
+  font-size: 12px;
+  color: #666;
+}
+.bs-table.small .fixed-table-pagination .btn-group button, .bs-table.small .fixed-table-pagination .btn-group .btn {
+  padding: 2px 10px;
+}
+.bs-table.small .fixed-table-pagination .pagination a {
+  padding: 4px 10px;
+}
+.bs-table.small .fixed-table-pagination > .pagination-detail, .bs-table.small .fixed-table-pagination > .pagination-detail .btn, .bs-table.small .fixed-table-pagination > .pagination-detail button,
+.bs-table.small .fixed-table-pagination > .pagination-detail .dropdown-menu a {
+  font-size: 12px;
+}
+
+.bs-table.medium .fixed-table-container thead th .th-inner, .bs-table.medium .fixed-table-container tbody td .th-inner {
+  font-size: 14px;
+  color: #444;
+}
+.bs-table.medium .fixed-table-container tbody td {
+  font-size: 14px;
+  color: #666;
+}
+.bs-table.medium .fixed-table-pagination .btn-group button, .bs-table.medium .fixed-table-pagination .btn-group .btn {
+  padding: 2px 14px;
+}
+.bs-table.medium .fixed-table-pagination .pagination a {
+  padding: 6px 12px;
+}
+.bs-table.medium .fixed-table-pagination > .pagination-detail, .bs-table.medium .fixed-table-pagination > .pagination-detail .btn, .bs-table.medium .fixed-table-pagination > .pagination-detail button,
+.bs-table.medium .fixed-table-pagination > .pagination-detail .dropdown-menu a {
+  font-size: 14px;
+}
+
+.bs-table.grey .fixed-table-container thead th, .bs-table.grey .fixed-table-container .fixed-table-header {
+  background: #EFF1F5;
+}
+.bs-table.grey .bootstrap-table .table > thead > tr > th {
+  border-bottom: none;
+}
+
+.bs-table.gradient .fixed-table-container thead th, .bs-table.gradient .fixed-table-container .fixed-table-header {
+  background: #fff;
+  background: -moz-linear-gradient(top, #fff 0%, #e5e5e5 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #e5e5e5));
+  background: -webkit-linear-gradient(top, #fff 0%, #e5e5e5 100%);
+  background: -o-linear-gradient(top, #fff 0%, #e5e5e5 100%);
+  background: -ms-linear-gradient(top, #fff 0%, #e5e5e5 100%);
+  background: linear-gradient(to bottom, #fff 0%, #e5e5e5 100%);
+}
+.bs-table.gradient .bootstrap-table .table > thead > tr > th {
+  border-bottom: none;
+}
+
+.bs-table.slim .fixed-table-container .table > thead:first-child > tr:first-child > th {
+  border: 0;
+}
+.bs-table.slim .fixed-table-container .table.table-condensed > tbody > tr > td {
+  border: 0;
+  border-bottom: solid 1px #ddd;
+}

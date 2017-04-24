@@ -1,0 +1,1 @@
+## 针对IE8做了兼容，IE8 滚动事件触发 blur，影响autoCompleter的使用
