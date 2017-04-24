@@ -3,6 +3,6 @@
  */
 
 
-var CONSTANT = {
-    JsBasePath:'../../CommonBase'
+var Constants = {
+    CONTEXT_PATH:'/'
 }
