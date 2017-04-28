@@ -2,6 +2,7 @@
  * Created by Tinker on 2017/4/24.
  */
 
+var layer = null;
 
 /**
  * 首页
@@ -13,7 +14,7 @@ $(function () {
     // initLayout();
     parentVerticalTab.initTab();
     serverTable.setTable();
-    // initEvent();
+    initEvent();
     // validator.verify1();
     // isValid = false;// 验证标记
 });
@@ -107,22 +108,117 @@ function initLayout() {
 }
 
 function initEvent() {
-    // 添加按钮
-    // $("#parentName").click(function () {
-    //     popUpWindow.chooseDomain();
-    // });
+
+    layui.config({
+        version: false //一般用于更新模块缓存，默认不开启。设为true即让浏览器不缓存。也可以设为一个固定的值，如：201610
+        , debug: false //用于开启调试模式，默认false，如果设为true，则JS模块的节点会保留在页面
+        , base: '' //设定扩展的Layui模块的所在目录，一般用于外部模块扩展
+    });
+
+    layui.use('layer', function () {
+        layer = layui.layer;
+
+        // layer.msg('hello');
+        layer.ready(function () {
+            layer.msg('很高兴一开场就见到你');
+        });
+    });
+
+
+    $("#newSitePassword").click(function () {
+        _keyMgr.newSitePasswordLayer();
+    });
+
+    $("#user_signOut").click(function () {
+        _userModel.newAuthDialog();
+    });
 
 }
 
-/**
- * 弹出窗
- */
-var popUpWindow = {}
+var _keyMgr = {
+    sitePasswordDialog: null,
+    sitePasswordLayer: null,
+
+
+    newSitePasswordDialog: function () {
+        _keyMgr.sitePasswordDialog = dialog({
+            title: '新建加密密码',
+            content: $("#site_addingDialog"),
+            okValue: '确 定',
+            onclose: function () {
+            },
+            onshow: function () {
+                this._popup.css("left", "280px");
+                this._popup.css("top", "80px");
+            },
+            ok: function () {
+                _keyMgr.saveSitePassword();
+                return false;
+            },
+            cancelValue: '取消',
+            cancel: function () {
+
+            }
+        });
+        _keyMgr.sitePasswordDialog.showModal();
+    },
+
+    newSitePasswordLayer: function () {
+        _keyMgr.sitePasswordLayer = layer.open({
+            type: 1,
+            title: '新建加密密码',
+            content: $("#site_addingDialog"),
+            yes: function(index, layero){
+                //按钮【按钮一】的回调
+            }
+        });
+    },
+    saveSitePassword: function () {
+        var data = {};
+        $.ajax({
+            url: Constants.SERVER_IP + '/passwordMgr/encryptPsw',
+            data: data,
+            success: function (data) {
+                if (data.success) {
+                    sitePasswordDialog.close();
+                }
+            }
+
+        });
+
+
+    }
+}
+
+
+var _userModel = {
+    newAuthDialog: function () {
+        var authDialog = dialog({
+            title: '用户验证',
+            content: $("#user_authDialog"),
+            okValue: '确 定',
+            onclose: function () {
+            },
+            onshow: function () {
+                this._popup.css("left", "280px");
+                this._popup.css("top", "80px");
+            },
+            ok: function () {
+
+            },
+            cancelValue: '取消',
+            cancel: function () {
+
+            }
+        });
+        authDialog.showModal();
+    }
+}
 
 /**
  * 提交信息
  */
-var postData = {}
+var _postData = {}
 
 /**
  * 验证规则

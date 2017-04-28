@@ -8,6 +8,9 @@
           href="../../CommonBase/normal/Easy-Responsive-Tabs/css/easy-responsive-tabs.css">
     <link rel="stylesheet" href="../../CommonBase/normal/bootstrapTable/css/bootstrap-table.css">
     <link rel="stylesheet" href="../css/base/pageTab.css">
+    <link rel="stylesheet" href="../../CommonBase/normal/font-awesome/css/font-awesome.min.css">
+
+
 </head>
 <body>
 <div class="contain_box">
@@ -15,8 +18,8 @@
         <span class="title">Key Manager</span>
         <img src="">
         <span>First blood, as indeed I am first in everything. </span>
-        <a href="javascript:void(0)" class="sign out">Sign Out</a>
-        <a href="javascript:void(0)" class="sign in">Sign In</a>
+        <span id="user_signOut"><i class="fa"></i> <a href="javascript:void(0)" class="sign_out">Sign Out</a></span>
+        <a href="javascript:void(0)" class="sign_in">Sign In</a>
     </div>
 
 
@@ -79,17 +82,43 @@
 </div>
 
 
-<div id="site_addingDialog" style="display: none">
-    <label for="site_address_adding">网站名或地址:</label>
-    <input id="site_address_adding" name="site_address" style="" value="">
+
+<!--用户登录注册验证窗口-->
+<div id="user_authDialog" style="display: none">
+    <label for="user_account">账户/邮箱地址:</label>
+    <input id="user_account" name="user_account" style="" value="">
+
+    <label for="user_password">密码/授权码:</label>
+    <input id="user_password" name="user_password" style="" value="">
 
 </div>
 
 
 </body>
 
+<!--新增网站密码窗口-->
+<div id="site_addingDialog" style="display: none">
+
+    <label for="site_address_adding">网址:</label>
+    <input id="site_address_adding" name="site_address" style="" value="">
+
+    <label for="site_name">APP或站点名:</label>
+    <input id="site_name" name="site_name" style="" value="">
+
+
+    <label for="site_account">账户:</label>
+    <input id="site_account" name="site_account" style="" value="">
+
+    <label for="site_password">密码:</label>
+    <input id="site_password" name="site_password" style="" value="">
+
+</div>
+
 
 <script src="../js/constant.js"></script>
+
+
+
 <script type="text/javascript" src="../../CommonBase/normal/jquery/jquery-1.11.2.min.js"></script>
 
 <script type="text/javascript" src="../../CommonBase/normal/bootstrapTable/js/bootstrap-table.min.js"></script>
@@ -97,6 +126,13 @@
 <script type="text/javascript" src="../../CommonBase/normal/Easy-Responsive-Tabs/js/easyResponsiveTabs.js"></script>
 <script type="text/javascript" src="../localJs/entry.js"></script>
 <script src="../../CommonBase/common/base/common.js"></script>
+
+
+<script src="../../CommonBase/normal/artDialog/js/dialog-plus-min.js"></script>
+<link rel="stylesheet" href="../../CommonBase/normal/artDialog/css/ui-dialog.css">
+
+<script src="../../CommonBase/normal/layui/layui.js"></script>
+<link rel="stylesheet" href="../../CommonBase/normal/layui/css/layui.css">
 
 
 <!--<script type="text/javascript" src="../localJs/imageflow.js"></script>-->
