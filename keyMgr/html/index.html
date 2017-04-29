@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../CommonBase/normal/bootstrapTable/css/bootstrap-table.css">
     <link rel="stylesheet" href="../css/base/pageTab.css">
     <link rel="stylesheet" href="../../CommonBase/normal/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../CommonBase/normal/bootstrap/css/bootstrap.css">
 
 
 </head>
@@ -82,7 +83,6 @@
 </div>
 
 
-
 <!--用户登录注册验证窗口-->
 <div id="user_authDialog" style="display: none">
     <label for="user_account">账户/邮箱地址:</label>
@@ -99,24 +99,41 @@
 <!--新增网站密码窗口-->
 <div id="site_addingDialog" class="site_addingDialog_cls" style="display: none">
 
-    <label for="site_address_adding">网址:</label>
-    <input id="site_address_adding" name="site_address" style="" value="">
 
-    <label for="site_name">APP或站点名:</label>
-    <input id="site_name" name="site_name" style="" value="">
+    <div class="form-group">
+        <label for="site_address_adding">网址:</label>
+        <input id="site_address_adding" class="form-control" name="site_address" style="" value="">
+    </div>
 
+    <div class="form-group">
+        <label for="site_name">APP或站点名:</label>
+        <input id="site_name" class="form-control" name="site_name" style="" value="">
+    </div>
 
-    <label for="site_account">账户:</label>
-    <input id="site_account" name="site_account" style="" value="">
+    <div class="form-group">
+        <label for="site_account">账户:</label>
+        <input id="site_account" class="form-control" name="site_account" style="" value="">
 
-    <label for="site_password">密码:</label>
-    <input id="site_password" name="site_password" style="" value="">
+    </div>
+    <div class="form-group">
+        <label for="site_password">密码:</label>
+        <input id="site_password" class="form-control" name="site_password" style="" value="">
+    </div>
+    <div class="form-group">
+        <label for="site_password">加密方式:</label>
+        <select id="site_encode_method" class="form-control" name="site_encode_method" style="" value="">
+            <option value="0">RSA</option>
+            <option value="1">AES</option>
+            <option value="2">MD5+RSA</option>
+            <option value="3">随机选择算法类型</option>
+        </select>
+
+    </div>
 
 </div>
 
 
 <script src="../js/constant.js"></script>
-
 
 
 <script type="text/javascript" src="../../CommonBase/normal/jquery/jquery-1.11.2.min.js"></script>

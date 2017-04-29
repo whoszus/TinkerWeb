@@ -117,8 +117,6 @@ function initEvent() {
 
     layui.use('layer', function () {
         layer = layui.layer;
-
-        // layer.msg('hello');
         layer.ready(function () {
             layer.msg('很高兴一开场就见到你');
         });
@@ -171,8 +169,8 @@ var _keyMgr = {
             skin:'layer-skin',
             btn: ['加密', '取消'],
             yes: function(index, layero){
-                layer.msg("hello");
-                debugger
+                // layer.msg("hello");
+                // debugger
                 return false;
             },
             btn2: function(index, layero){
@@ -226,7 +224,11 @@ var _userModel = {
 /**
  * 提交信息
  */
-var _postData = {}
+var _postData = {
+    postSitePassword:function () {
+
+    }
+}
 
 /**
  * 验证规则
