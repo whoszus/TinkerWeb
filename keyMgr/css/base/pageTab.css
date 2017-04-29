@@ -44,8 +44,8 @@ body .layer-skin .layui-layer-btn .layui-layer-btn1 {
 
 .site_addingDialog_cls{
     display: block;
-    width: 300px;
-    height: 160px;
+    width: 500px;
+    height: 275px;
     border: 10px solid #F8F8F8;
     border-top-width: 0;
     padding: 10px;
@@ -55,6 +55,13 @@ body .layer-skin .layui-layer-btn .layui-layer-btn1 {
     color: #eee;
     font-size: 12px;
     font-family: Courier New;
+    margin-top: 10px;
 }
-
-
+.site_input_ctr{
+    display: inline-block !important;
+    width: 200px !important;
+}
+#site_addingDialog label{
+    display: inline-block;
+    width: 90px;
+}

@@ -141,7 +141,7 @@ var _keyMgr = {
             title: '新建加密密码',
             content: $("#site_addingDialog"),
             skin: 'layer-skin',
-            area:['500px','275px'],
+            area:['500px','384px'],
             btn: ['加密', '取消'],
             yes: function (index, layero) {
 
