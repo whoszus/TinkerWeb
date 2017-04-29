@@ -134,46 +134,21 @@ function initEvent() {
 }
 
 var _keyMgr = {
-    sitePasswordDialog: null,
     sitePasswordLayer: null,
-
-
-    newSitePasswordDialog: function () {
-        _keyMgr.sitePasswordDialog = dialog({
-            title: '新建加密密码',
-            content: $("#site_addingDialog"),
-            okValue: '确 定',
-            onclose: function () {
-            },
-            onshow: function () {
-                this._popup.css("left", "280px");
-                this._popup.css("top", "80px");
-            },
-            ok: function () {
-                _keyMgr.saveSitePassword();
-                return false;
-            },
-            cancelValue: '取消',
-            cancel: function () {
-
-            }
-        });
-        _keyMgr.sitePasswordDialog.showModal();
-    },
-
     newSitePasswordLayer: function () {
         _keyMgr.sitePasswordLayer = layer.open({
             type: 1,
             title: '新建加密密码',
             content: $("#site_addingDialog"),
-            skin:'layer-skin',
+            skin: 'layer-skin',
+            area:['500px','275px'],
             btn: ['加密', '取消'],
-            yes: function(index, layero){
-                // layer.msg("hello");
-                // debugger
+            yes: function (index, layero) {
+
+                _postData.postSitePassword();
                 return false;
             },
-            btn2: function(index, layero){
+            btn2: function (index, layero) {
                 debugger
             }
 
@@ -225,8 +200,22 @@ var _userModel = {
  * 提交信息
  */
 var _postData = {
+    getSitePassword: function () {
+        var data = {};
+        $('.site_addingDialog_cls' + '  :input' ).each(function () {
+            var key = $(this).attr('id');
+            data[key] = $(this).val();
+        })
+        return data;
+    },
     postSitePassword:function () {
+        var data =this.getSitePassword();
 
+        if(data){
+            $.ajax({
+                url:Constants.SERVER_IP+''
+            })
+        }
     }
 }
 
