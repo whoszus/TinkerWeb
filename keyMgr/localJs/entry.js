@@ -168,9 +168,17 @@ var _keyMgr = {
             type: 1,
             title: '新建加密密码',
             content: $("#site_addingDialog"),
+            skin:'layer-skin',
+            btn: ['加密', '取消'],
             yes: function(index, layero){
-                //按钮【按钮一】的回调
+                layer.msg("hello");
+                debugger
+                return false;
+            },
+            btn2: function(index, layero){
+                debugger
             }
+
         });
     },
     saveSitePassword: function () {

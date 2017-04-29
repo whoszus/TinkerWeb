@@ -13,3 +13,48 @@ body {
         margin: 0 auto;
     }
 }
+
+body .layer-skin .layui-layer-title {
+    /*background: #5886cc;*/
+    /*color: #fff;*/
+    /*border: none;*/
+
+    padding: 0 80px 0 20px;
+    height: 42px;
+    line-height: 42px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+    overflow: hidden;
+    background-color: #F8F8F8;
+    border-radius: 2px 2px 0 0;
+}
+
+body .layer-skin .layui-layer-btn {
+    border-top: 1px solid #E9E7E7
+}
+
+body .layer-skin .layui-layer-btn a {
+    background: #333;
+}
+
+body .layer-skin .layui-layer-btn .layui-layer-btn1 {
+    background: #999;
+}
+
+.site_addingDialog_cls{
+    display: block;
+    width: 300px;
+    height: 160px;
+    border: 10px solid #F8F8F8;
+    border-top-width: 0;
+    padding: 10px;
+    line-height: 20px;
+    overflow: auto;
+    background-color: #3F3F3F;
+    color: #eee;
+    font-size: 12px;
+    font-family: Courier New;
+}
+
+
