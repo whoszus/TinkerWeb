@@ -166,23 +166,21 @@ var _keyMgr = {
         return data;
     },
     postSitePassword:function () {
-        var request = createCORS('post', Constants.SERVER_IP+AjaxUrl.encryptPsw);
-        if(request){
-            console.log(request);
-            request.onload = function(){
-
-            };
-            request.send();
-        }
-       /* var data =this.getSitePassword();
+        // var request = createCORS('post', Constants.SERVER_IP+AjaxUrl.encryptPsw);
+        // if(request){
+        //     console.log(request);
+        //     request.onload = function(){
+        //
+        //     };
+        //     request.send();
+        // }
+        var data =this.getSitePassword();
         if(data){
             $.ajax({
                 type: "post",
                 async: false,
-                //url: "http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998",
                 dataType: "jsonp",
                 jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-                //jsonpCallback:"flightHandler",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
                 url: Constants.SERVER_IP + AjaxUrl.encryptPsw,
                 data: data,
                 success: function (param) {
@@ -193,7 +191,7 @@ var _keyMgr = {
                     }
                 }
             });
-        }*/
+        }
     }
 }
 

@@ -70,3 +70,10 @@ body .layer-skin .layui-layer-btn .layui-layer-btn1 {
 .parentVerticalTabCls{
     margin-top: 80px !important;
 }
+.search{
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+#newSitePassword{
+    float: right;
+}
