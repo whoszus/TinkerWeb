@@ -16,12 +16,12 @@
 </head>
 <body>
 <div class="contain_box">
-    <div class="top_con">
+    <div class="top_con" style="border: none">
         <span class="title">Key Manager</span>
         <img src="">
         <span>First blood, as indeed I am first in everything. </span>
         <span id="user_signOut"><i class="fa"></i> <a href="javascript:void(0)" class="sign_out">Sign Out</a></span>
-        <a href="javascript:void(0)" class="sign_in">Sign In</a>
+        <a href="javascript:void(0)" class="sign_in" id="login">Sign In</a>
     </div>
 
 
@@ -96,6 +96,19 @@
 
 
 </body>
+
+<!--登录窗口-->
+<div id="login_box" style="display: none;">
+    <div class="form-group">
+        <label for="site_address_adding">用户名:</label>
+        <input id="userName" class="form-control site_input_ctr" name="site_address" style="" value="">
+    </div>
+
+    <div class="form-group">
+        <label for="site_name">密码:</label>
+        <input id="password" class="form-control site_input_ctr" name="site_name" style="" value="">
+    </div>
+</div>
 
 <!--新增网站密码窗口-->
 <div id="site_addingDialog" class="site_addingDialog_cls" style="display: none">

@@ -1,6 +1,8 @@
 .contain_box {
     width: 940px;
     margin: 0 auto;
+    height: 80px;
+    border-bottom: 2px solid #3c3c3c;
 }
 
 body {
@@ -64,4 +66,7 @@ body .layer-skin .layui-layer-btn .layui-layer-btn1 {
 #site_addingDialog label{
     display: inline-block;
     width: 90px;
+}
+.parentVerticalTabCls{
+    margin-top: 80px !important;
 }

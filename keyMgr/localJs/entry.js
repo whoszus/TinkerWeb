@@ -133,6 +133,7 @@ function initEvent() {
 
 }
 
+
 var _keyMgr = {
     sitePasswordLayer: null,
     newSitePasswordLayer: function () {
@@ -173,26 +174,25 @@ var _keyMgr = {
 
 
 var _userModel = {
+    login: null,
     newAuthDialog: function () {
-        var authDialog = dialog({
-            title: '用户验证',
-            content: $("#user_authDialog"),
-            okValue: '确 定',
-            onclose: function () {
-            },
-            onshow: function () {
-                this._popup.css("left", "280px");
-                this._popup.css("top", "80px");
-            },
-            ok: function () {
+        _userModel.login = layer.open({
+            type: 1,
+            title: '登录',
+            content: $("#login_box"),
+            skin: 'layer-skin',
+            area:['500px','384px'],
+            btn: ['登录', '取消'],
+            yes: function (index, layero) {
 
+                _postData.postSitePassword();
+                return false;
             },
-            cancelValue: '取消',
-            cancel: function () {
-
+            btn2: function (index, layero) {
+                debugger
             }
+
         });
-        authDialog.showModal();
     }
 }
 
