@@ -5,6 +5,6 @@
 
 var Constants = {
     CONTEXT_PATH:'/',
-    SERVER_IP:'http://127.0.0.1',
+    SERVER_IP:'http://localhost',
 
 }

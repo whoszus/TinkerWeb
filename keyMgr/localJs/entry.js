@@ -3,6 +3,9 @@
  */
 
 var layer = null;
+var AjaxUrl = {
+    encryptPsw :'/passwordMgr' +'/encryptPsw',
+}
 
 /**
  * 首页
@@ -144,32 +147,68 @@ var _keyMgr = {
             area:['500px','384px'],
             btn: ['加密', '取消'],
             yes: function (index, layero) {
-
-                _postData.postSitePassword();
+                _keyMgr.postSitePassword();
                 return false;
             },
             btn2: function (index, layero) {
                 debugger
             }
-
         });
     },
-    saveSitePassword: function () {
+    getSitePassword: function () {
         var data = {};
-        $.ajax({
-            url: Constants.SERVER_IP + '/passwordMgr/encryptPsw',
-            data: data,
-            success: function (data) {
-                if (data.success) {
-                    sitePasswordDialog.close();
+        $('.site_addingDialog_cls' + '  :input' ).each(function () {
+            var key = $(this).attr('id');
+            data[key] = $(this).val();
+        })
+        data['userId'] = $('#globalUserId').val();
+        return data;
+    },
+    postSitePassword:function () {
+        var request = createCORS('post', Constants.SERVER_IP+AjaxUrl.encryptPsw);
+        if(request){
+            console.log(request);
+            request.onload = function(){
+
+            };
+            request.send();
+        }
+       /* var data =this.getSitePassword();
+        if(data){
+            $.ajax({
+                type: "post",
+                async: false,
+                //url: "http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998",
+                dataType: "jsonp",
+                jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                //jsonpCallback:"flightHandler",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+                url: Constants.SERVER_IP + AjaxUrl.encryptPsw,
+                data: data,
+                success: function (param) {
+                    console.log(param);
+                    if (param.success) {
+                        layer.msg(param.message);
+                        _keyMgr.sitePasswordLayer.close();
+                    }
                 }
-            }
-
-        });
-
-
+            });
+        }*/
     }
 }
+
+function createCORS(method, url){
+    var xhr = new XMLHttpRequest();
+    if('withCredentials' in xhr){
+        xhr.open(method, url, true);
+    }else if(typeof XDomainRequest != 'undefined'){
+        var xhr = new XDomainRequest();
+        xhr.open(method, url);
+    }else{
+        xhr = null;
+    }
+    return xhr;
+}
+
 
 
 var _userModel = {
@@ -200,23 +239,7 @@ var _userModel = {
  * 提交信息
  */
 var _postData = {
-    getSitePassword: function () {
-        var data = {};
-        $('.site_addingDialog_cls' + '  :input' ).each(function () {
-            var key = $(this).attr('id');
-            data[key] = $(this).val();
-        })
-        return data;
-    },
-    postSitePassword:function () {
-        var data =this.getSitePassword();
 
-        if(data){
-            $.ajax({
-                url:Constants.SERVER_IP+''
-            })
-        }
-    }
 }
 
 /**
