@@ -4,7 +4,13 @@
 
 var layer = null;
 var AjaxUrl = {
-    encryptPsw :'/passwordMgr' +'/encryptPsw',
+    encryptPsw: '/passwordMgr' + '/encryptPsw',
+    deletePsw: '/passwordMgr' + '/deletePsw',
+
+    /**
+     * 用户认证
+     */
+    registerUrl: '/auth/register.do',
 }
 
 /**
@@ -32,25 +38,13 @@ var serverTable = {
             method: 'post',
             contentType: 'application/x-www-form-urlencoded',
             // 全部勾选
-            onCheckAll: function (rows) {
-
+            onClickRow: function (rows) {
+                // debugger
             },
-            // 取消全部
-            onUncheckAll: function (rows) {
-
+            onDblClickRow: function (row) {
+                _keyMgr.modifyPassword(row);
             },
-            // 单次勾选
-            onCheck: function (row, $element) {
 
-            },
-            // 取消单次勾选
-            onUncheck: function (row, $element) {
-
-            },
-            // 翻页时清空勾选信息
-            onPageChange: function (number, size) {
-
-            },
             queryParams: function (params) {
                 var pageNumber = 1;
                 if (params.limit != 0) {
@@ -70,7 +64,7 @@ var serverTable = {
      */
     refreshTb: function () {
         $("#bootstrapTable").bootstrapTable('refresh', {
-            url: Constants.CONTEXT_PATH + '/domain/getPageList.do'
+            url: Constants.SERVER_IP + '/passwordMgr/getSiteBootstrapTable'
         });
     }
 
@@ -125,27 +119,31 @@ function initEvent() {
         });
     });
 
-
     $("#newSitePassword").click(function () {
         _keyMgr.newSitePasswordLayer();
     });
 
-    $("#user_signOut").click(function () {
+    $("#user_sign_up").click(function () {
         _userModel.newAuthDialog();
     });
+
+    // _userModel.userSignUp();
+
 
 }
 
 
 var _keyMgr = {
     sitePasswordLayer: null,
+    modifyLayer: null,
     newSitePasswordLayer: function () {
+        initInputValue('.site_addingDialog_cls');
         _keyMgr.sitePasswordLayer = layer.open({
             type: 1,
             title: '新建加密密码',
             content: $("#site_addingDialog"),
             skin: 'layer-skin',
-            area:['500px','384px'],
+            area: ['500px', '384px'],
             btn: ['加密', '取消'],
             yes: function (index, layero) {
                 _keyMgr.postSitePassword();
@@ -158,87 +156,157 @@ var _keyMgr = {
     },
     getSitePassword: function () {
         var data = {};
-        $('.site_addingDialog_cls' + '  :input' ).each(function () {
+        $('.site_addingDialog_cls' + '  :input').each(function () {
             var key = $(this).attr('id');
             data[key] = $(this).val();
         })
         data['userId'] = $('#globalUserId').val();
         return data;
     },
-    postSitePassword:function () {
-        // var request = createCORS('post', Constants.SERVER_IP+AjaxUrl.encryptPsw);
-        // if(request){
-        //     console.log(request);
-        //     request.onload = function(){
-        //
-        //     };
-        //     request.send();
-        // }
-        var data =this.getSitePassword();
-        if(data){
+    postSitePassword: function () {
+        var data = this.getSitePassword();
+        if (data) {
             $.ajax({
                 type: "post",
-                async: false,
-                dataType: "jsonp",
-                jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                xhrFields: {withCredentials: true},
+                crossDomain: true,
+                dataType: "json",
                 url: Constants.SERVER_IP + AjaxUrl.encryptPsw,
                 data: data,
                 success: function (param) {
-                    console.log(param);
                     if (param.success) {
-                        layer.msg(param.message);
-                        _keyMgr.sitePasswordLayer.close();
+                        layer.close(_keyMgr.sitePasswordLayer);
+                        serverTable.refreshTb();
                     }
+                    layer.msg(param.message);
                 }
             });
         }
-    }
-}
+    },
+    modifyPassword: function (row) {
+        initInputValue('.site_addingDialog_cls');
+        if (row) {
+            setInputValue('.site_addingDialog_cls', row);
+        }
+        _keyMgr.modifyLayer = layer.open({
+            type: 1,
+            title: '修改密码',
+            content: $("#site_addingDialog"),
+            skin: 'layer-skin',
+            area: ['500px', '384px'],
+            btn: ['加密', '删除密码', '取消'],
+            yes: function (index, layero) {
+                _keyMgr.postSitePassword();
+                return false;
+            },
+            btn2: function (index, layero) {
+                _keyMgr.deleteSitePassword(row);
+                return false;
+            },
+            btn3: function (index, layero) {
+                layer.close(_keyMgr.modifyLayer);
+            }
+        });
+        $("#sitePasswordEncode").css("disable", true);
+    },
 
-function createCORS(method, url){
-    var xhr = new XMLHttpRequest();
-    if('withCredentials' in xhr){
-        xhr.open(method, url, true);
-    }else if(typeof XDomainRequest != 'undefined'){
-        var xhr = new XDomainRequest();
-        xhr.open(method, url);
-    }else{
-        xhr = null;
-    }
-    return xhr;
-}
+    deleteSitePassword: function (row) {
+        if (row) {
+            delete  row['lastDecodeTime'];
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                crossDomain: true,
+                xhrFields: {
+                    withCredentials: true
+                },
+                url: Constants.SERVER_IP + AjaxUrl.deletePsw,
+                data: row,
+                success: function (param) {
+                    if (param.success) {
+                        layer.close(_keyMgr.modifyLayer);
+                        serverTable.refreshTb();
+                    }
+                    layer.msg(param.message);
+                }
+            });
 
+        }
+    }
+
+}
 
 
 var _userModel = {
-    login: null,
+    loginLayer: null,
     newAuthDialog: function () {
-        _userModel.login = layer.open({
+        initInputValue('.login_box_cls');
+        _userModel.userSignUp();
+        _userModel.loginLayer = layer.open({
             type: 1,
             title: '登录',
             content: $("#login_box"),
             skin: 'layer-skin',
-            area:['500px','384px'],
-            btn: ['登录', '取消'],
+            area: ['500px', '384px'],
+            btn: ['确定', '取消'],
             yes: function (index, layero) {
-
-                _postData.postSitePassword();
+                _userModel.userSignUp();
                 return false;
             },
             btn2: function (index, layero) {
                 debugger
             }
-
         });
+    },
+
+    userSignUp: function () {
+        var data = getInputValue(".login_box_cls");
+        if (data) {
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                crossDomain: true,
+                xhrFields: {
+                    withCredentials: true
+                },
+                url: Constants.SERVER_IP + AjaxUrl.registerUrl,
+                data: data,
+                success: function (param) {
+                    layer.msg(param.message);
+                    if (param.success) {
+                        // if(_userModel.loginLayer){
+                        //     layer.close(_userModel.loginLayer);
+                        // }
+                        _userModel.loginLayer &&  layer.close(_userModel.loginLayer);
+                        _userModel.changeHeaderInfo(true,'tinker');
+                    }else{
+                        _userModel.changeHeaderInfo(false);
+                    }
+
+                }
+            });
+        }
+    },
+    changeHeaderInfo: function (info,userInfo) {
+        if (info) {
+            var str = '<i class="fa fa-github fa-fw fa-3x"></i>'+userInfo;
+            $('.header_user_info').append(str);
+            $('.head_user_ctrl').css("display", 'none');
+            $('.header_user_info').css('display','inline-block');
+
+        }else {
+            $('.head_user_ctrl').css("display", 'inline-block');
+            $('.header_user_info').css('display','none');
+        }
     }
+
+
 }
 
 /**
  * 提交信息
  */
-var _postData = {
-
-}
+var _postData = {}
 
 /**
  * 验证规则
@@ -293,3 +361,45 @@ var validator = {
 
 };
 
+function getInputValue(parent_cls) {
+    var data = {};
+    $(parent_cls + '  :input').each(function () {
+        var key = $(this).attr('id');
+        data[key] = $(this).val();
+    })
+    return data;
+}
+function setInputValue(parent_cls, data) {
+    $(parent_cls + '  :input').each(function () {
+        var key = $(this).attr('id');
+        $(this).val(data[key]);
+    });
+
+}
+function initInputValue(parent_cls) {
+    $(parent_cls + '  :input').each(function () {
+        $(this).val('');
+    });
+}
+
+
+function numberFormatter(value, row, index) {
+    return index + 1;
+}
+function typeFormatter(value, row, index) {
+    switch (index) {
+        case 1 :
+            return 'RSA';
+            break
+        case 2 :
+            return 'AES';
+            break;
+        case 3 :
+            return 'MD5+RSA';
+            break;
+        case 0 :
+            return '保密';
+            break;
+    }
+
+}

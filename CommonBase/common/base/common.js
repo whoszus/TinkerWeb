@@ -14,6 +14,10 @@ window.C = window.common = (function () {
             method: 'get',
             undefinedText: '暂无',
             dataType: "json",
+            crossDomain:true,
+            xhrFields: {
+                withCredentials: true
+            },
             sidePagination: 'server',
             pagination: true,
             cache: false,

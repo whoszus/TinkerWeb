@@ -77,3 +77,14 @@ body .layer-skin .layui-layer-btn .layui-layer-btn1 {
 #newSitePassword{
     float: right;
 }
+.top_con{
+    overflow: hidden;
+}
+.head_user_ctrl{
+    display: inline-block;
+    float: right;
+}
+.header_user_info{
+    display: none;
+    float: right;
+}
