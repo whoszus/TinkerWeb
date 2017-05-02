@@ -261,6 +261,7 @@ var _userModel = {
 
     userSignUp: function () {
         var data = getInputValue(".login_box_cls");
+        debugger
         if (data) {
             $.ajax({
                 type: "post",
@@ -274,7 +275,7 @@ var _userModel = {
                 success: function (param) {
                     if (param.success) {
                         _userModel.loginLayer &&  layer.close(_userModel.loginLayer);
-                        _userModel.changeHeaderInfo(true,param.userName);
+                        _userModel.changeHeaderInfo(true,param.message);
                     }else{
                         layer.msg(param.message);
                         _userModel.changeHeaderInfo(false);
@@ -295,6 +296,26 @@ var _userModel = {
             $('.head_user_ctrl').css("display", 'inline-block');
             $('.header_user_info').css('display','none');
         }
+    },
+    loginWithCookie:function () {
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: true
+            },
+            url: Constants.SERVER_IP + AjaxUrl.registerUrl,
+            success: function (param) {
+                if (param.success) {
+                    _userModel.loginLayer &&  layer.close(_userModel.loginLayer);
+                    _userModel.changeHeaderInfo(true,param.message);
+                }else{
+                    layer.msg(param.message);
+                    _userModel.changeHeaderInfo(false);
+                }
+            }
+        });
     }
 
 
