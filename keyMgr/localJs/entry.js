@@ -272,14 +272,11 @@ var _userModel = {
                 url: Constants.SERVER_IP + AjaxUrl.registerUrl,
                 data: data,
                 success: function (param) {
-                    layer.msg(param.message);
                     if (param.success) {
-                        // if(_userModel.loginLayer){
-                        //     layer.close(_userModel.loginLayer);
-                        // }
                         _userModel.loginLayer &&  layer.close(_userModel.loginLayer);
-                        _userModel.changeHeaderInfo(true,'tinker');
+                        _userModel.changeHeaderInfo(true,param.userName);
                     }else{
+                        layer.msg(param.message);
                         _userModel.changeHeaderInfo(false);
                     }
 
