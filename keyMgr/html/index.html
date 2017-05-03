@@ -23,10 +23,10 @@
                 <i class="fa fa-home fa-fw"></i>
                 <a href="javascript:void(0)" class="sign_up">Sign up</a>
             </span>
-            <!--<span id="user_sign_in">-->
-                <!--<i class="fa fa-home fa-fw"></i>-->
-                <!--<a href="javascript:void(0)" class="sign_in" id="login">Sign In</a>-->
-            <!--</span>-->
+            <span id="user_sign_in">
+                <i class="fa fa-home fa-fw"></i>
+                <a href="javascript:void(0)" class="sign_in" id="login">Sign In</a>
+            </span>
         </span>
 
         <span class="header_user_info">
@@ -96,12 +96,32 @@
 
 
 <!--用户登录注册验证窗口-->
-<div id="user_authDialog" style="display: none">
-    <label for="user_account">账户/邮箱地址:</label>
-    <input id="user_account" name="user_account" style="" value="">
+<div id="regist_box" class="regist_box_cls" style="display: none">
 
-    <label for="user_password">密码/授权码:</label>
-    <input id="user_password" name="user_password" style="" value="">
+    <div class="input-group margin-bottom-sm">
+        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+        <input name="userEmail" class="form-control" type="text" placeholder="邮箱">
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+        <input name="userPassword" class="form-control" type="password" placeholder="密码">
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+        <input name="userName" class="form-control" type="text" placeholder="用户名">
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+        <input name="userAccount" class="form-control" type="text" placeholder="账户">
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+        <input name="userFeedBack" class="form-control" type="text" placeholder="密钥问题">
+    </div>
 
 </div>
 
@@ -110,15 +130,10 @@
 
 <!--登录窗口-->
 <div id="login_box" class="login_box_cls" style="display: none;">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="fa   fa-hand-spock-o fa-fw"></i></span>
-        <input id="userName" class="form-control" type="text" placeholder="user name">
-    </div>
-
 
     <div class="input-group margin-bottom-sm">
         <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-        <input id="userEmail" class="form-control" type="text" placeholder="Email address">
+        <input id="userEmail" class="form-control" type="text" placeholder="Email address or Account">
     </div>
     <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>

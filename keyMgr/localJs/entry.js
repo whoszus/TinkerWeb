@@ -11,6 +11,8 @@ var AjaxUrl = {
      * 用户认证
      */
     registerUrl: '/auth/register.do',
+    loginWithToken:'/auth/loginWithToken.do',
+    loginWithAccount:'/auth/loginWithAccount.do'
 }
 
 /**
@@ -124,10 +126,12 @@ function initEvent() {
     });
 
     $("#user_sign_up").click(function () {
-        _userModel.newAuthDialog();
+        _userModel.newSignUpLayer();
     });
 
-    // _userModel.userSignUp();
+    $("#user_sign_in").click(function () {
+        _userModel.loginWithCookie();
+    });
 
 
 }
@@ -239,13 +243,14 @@ var _keyMgr = {
 
 var _userModel = {
     loginLayer: null,
-    newAuthDialog: function () {
+    registLayer:null,
+    newSignUpLayer: function () {
         initInputValue('.login_box_cls');
-        _userModel.userSignUp();
+        _userModel.loginWithCookie();
         _userModel.loginLayer = layer.open({
             type: 1,
-            title: '登录',
-            content: $("#login_box"),
+            title: '用户注册',
+            content: $("#regist_box"),
             skin: 'layer-skin',
             area: ['500px', '384px'],
             btn: ['确定', '取消'],
@@ -254,29 +259,62 @@ var _userModel = {
                 return false;
             },
             btn2: function (index, layero) {
-                debugger
             }
         });
     },
-
+    newSignInLayer:function () {
+        initInputValue('.regist_box_cls');
+        _userModel.registLayer = layer.open({
+            type: 1,
+            title: '登录',
+            content: $("#login_box"),
+            skin: 'layer-skin',
+            area: ['500px', '384px'],
+            btn: ['确定', '取消'],
+            yes: function (index, layero) {
+                _userModel.userSignIn();
+                return false;
+            },
+            btn2: function (index, layero) {
+            }
+        });
+    },
+    userSignIn: function () {
+        var data = getInputValueByName('.login_box_cls');
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            crossDomain: true,
+            url: Constants.SERVER_IP + AjaxUrl.loginWithAccount,
+            data:data,
+            success: function (param) {
+                if (param.success) {
+                    _userModel.loginLayer && layer.close(_userModel.loginLayer);
+                    _userModel.changeHeaderInfo(true, param.message);
+                } else {
+                    layer.msg(param.message);
+                }
+            }
+        });
+    },
+    /**
+     * 用户注册
+     */
     userSignUp: function () {
-        var data = getInputValue(".login_box_cls");
-        debugger
+        var data = getInputValue(".regist_box_cls");
         if (data) {
             $.ajax({
                 type: "post",
                 dataType: "json",
                 crossDomain: true,
-                xhrFields: {
-                    withCredentials: true
-                },
+                xhrFields: {withCredentials: true},
                 url: Constants.SERVER_IP + AjaxUrl.registerUrl,
                 data: data,
                 success: function (param) {
                     if (param.success) {
-                        _userModel.loginLayer &&  layer.close(_userModel.loginLayer);
-                        _userModel.changeHeaderInfo(true,param.message);
-                    }else{
+                        _userModel.loginLayer && layer.close(_userModel.loginLayer);
+                        _userModel.changeHeaderInfo(true, param.message);
+                    } else {
                         layer.msg(param.message);
                         _userModel.changeHeaderInfo(false);
                     }
@@ -285,19 +323,19 @@ var _userModel = {
             });
         }
     },
-    changeHeaderInfo: function (info,userInfo) {
+    changeHeaderInfo: function (info, userInfo) {
         if (info) {
-            var str = '<i class="fa fa-github fa-fw fa-3x"></i>'+userInfo;
+            var str = '<i class="fa fa-github fa-fw fa-3x"></i>' + userInfo;
             $('.header_user_info').append(str);
             $('.head_user_ctrl').css("display", 'none');
-            $('.header_user_info').css('display','inline-block');
+            $('.header_user_info').css('display', 'inline-block');
 
-        }else {
+        } else {
             $('.head_user_ctrl').css("display", 'inline-block');
-            $('.header_user_info').css('display','none');
+            $('.header_user_info').css('display', 'none');
         }
     },
-    loginWithCookie:function () {
+    loginWithCookie: function () {
         $.ajax({
             type: "post",
             dataType: "json",
@@ -305,14 +343,14 @@ var _userModel = {
             xhrFields: {
                 withCredentials: true
             },
-            url: Constants.SERVER_IP + AjaxUrl.registerUrl,
+            url: Constants.SERVER_IP + AjaxUrl.loginWithToken,
             success: function (param) {
                 if (param.success) {
-                    _userModel.loginLayer &&  layer.close(_userModel.loginLayer);
-                    _userModel.changeHeaderInfo(true,param.message);
-                }else{
+                    _userModel.loginLayer && layer.close(_userModel.loginLayer);
+                    _userModel.changeHeaderInfo(true, param.message);
+                } else {
                     layer.msg(param.message);
-                    _userModel.changeHeaderInfo(false);
+                    _userModel.newSignInLayer();
                 }
             }
         });
@@ -383,6 +421,14 @@ function getInputValue(parent_cls) {
     var data = {};
     $(parent_cls + '  :input').each(function () {
         var key = $(this).attr('id');
+        data[key] = $(this).val();
+    })
+    return data;
+}
+function getInputValueByName(parent_cls) {
+    var data = {};
+    $(parent_cls + '  :input').each(function () {
+        var key = $(this).attr('name');
         data[key] = $(this).val();
     })
     return data;
