@@ -130,8 +130,10 @@ function initEvent() {
     });
 
     $("#user_sign_in").click(function () {
-        _userModel.loginWithCookie();
+        _userModel.newSignInLayer();
     });
+
+    _userModel.loginWithCookie();
 
 
 }
@@ -246,8 +248,7 @@ var _userModel = {
     registLayer:null,
     newSignUpLayer: function () {
         initInputValue('.login_box_cls');
-        _userModel.loginWithCookie();
-        _userModel.loginLayer = layer.open({
+        _userModel.registLayer = layer.open({
             type: 1,
             title: '用户注册',
             content: $("#regist_box"),
@@ -264,7 +265,7 @@ var _userModel = {
     },
     newSignInLayer:function () {
         initInputValue('.regist_box_cls');
-        _userModel.registLayer = layer.open({
+        _userModel.loginLayer = layer.open({
             type: 1,
             title: '登录',
             content: $("#login_box"),
@@ -312,7 +313,7 @@ var _userModel = {
                 data: data,
                 success: function (param) {
                     if (param.success) {
-                        _userModel.loginLayer && layer.close(_userModel.loginLayer);
+                        _userModel.registLayer && layer.close(_userModel.registLayer);
                         _userModel.changeHeaderInfo(true, param.message);
                     } else {
                         layer.msg(param.message);
@@ -350,7 +351,7 @@ var _userModel = {
                     _userModel.changeHeaderInfo(true, param.message);
                 } else {
                     layer.msg(param.message);
-                    _userModel.newSignInLayer();
+                    // _userModel.newSignInLayer();
                 }
             }
         });
@@ -420,7 +421,7 @@ var validator = {
 function getInputValue(parent_cls) {
     var data = {};
     $(parent_cls + '  :input').each(function () {
-        var key = $(this).attr('id');
+        var key = $(this).attr('name');
         data[key] = $(this).val();
     })
     return data;
