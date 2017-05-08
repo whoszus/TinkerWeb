@@ -6,7 +6,7 @@ var layer = null;
 var AjaxUrl = {
     encryptPsw: '/passwordMgr' + '/encryptPsw',
     deletePsw: '/passwordMgr' + '/deletePsw',
-
+    decodePassword :'/passwordMgr' + '/decodePassword',
     /**
      * 用户认证
      */
@@ -200,7 +200,7 @@ var _keyMgr = {
             content: $("#site_addingDialog"),
             skin: 'layer-skin',
             area: ['500px', '384px'],
-            btn: ['加密', '删除密码', '取消'],
+            btn: ['加密', '删除密码', '解密'],
             yes: function (index, layero) {
                 _keyMgr.postSitePassword();
                 return false;
@@ -210,10 +210,34 @@ var _keyMgr = {
                 return false;
             },
             btn3: function (index, layero) {
-                layer.close(_keyMgr.modifyLayer);
+                // layer.close(_keyMgr.modifyLayer);
+                _keyMgr.decodePassword(row);
+                return false;
             }
         });
         $("#sitePasswordEncode").css("disable", true);
+    },
+
+    decodePassword:function (row) {
+        if (row) {
+            delete  row['lastDecodeTime'];
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                crossDomain: true,
+                xhrFields: {
+                    withCredentials: true
+                },
+                url: Constants.SERVER_IP + AjaxUrl.decodePassword,
+                data: row,
+                success: function (param) {
+                    if (param.success) {
+                    }
+                    // layer.msg(param.message);
+                }
+            });
+
+        }
     },
 
     deleteSitePassword: function (row) {
