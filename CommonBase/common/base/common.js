@@ -11,13 +11,11 @@ window.C = window.common = (function () {
         var settings = {
             url: url,
             classes: 'table table-hover table-condensed',
-            method: 'get',
+            method: 'post',
             undefinedText: '暂无',
             dataType: "json",
             crossDomain:true,
-            xhrFields: {
-                withCredentials: true
-            },
+            xhrFields: {withCredentials: true},
             sidePagination: 'server',
             pagination: true,
             cache: false,

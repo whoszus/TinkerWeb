@@ -194,6 +194,7 @@ var _keyMgr = {
         if (row) {
             setInputValue('.site_addingDialog_cls', row);
         }
+            $("#password").val('*******************');
         _keyMgr.modifyLayer = layer.open({
             type: 1,
             title: '修改密码',
@@ -221,6 +222,7 @@ var _keyMgr = {
     decodePassword:function (row) {
         if (row) {
             delete  row['lastDecodeTime'];
+            delete  row['sitePasswordEncode'];
             $.ajax({
                 type: "post",
                 dataType: "json",
@@ -232,8 +234,12 @@ var _keyMgr = {
                 data: row,
                 success: function (param) {
                     if (param.success) {
+                        layer.msg('解密成功！');
+                        $("#password").val(param.message);
+                    }else {
+                        layer.msg(param.message);
+
                     }
-                    // layer.msg(param.message);
                 }
             });
 
