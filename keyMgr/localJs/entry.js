@@ -12,7 +12,15 @@ var AjaxUrl = {
      */
     registerUrl: '/auth/register.do',
     loginWithToken:'/auth/loginWithToken.do',
-    loginWithAccount:'/auth/loginWithAccount.do'
+    loginWithAccount:'/auth/loginWithAccount.do',
+
+    /**
+     * 历史记录
+     */
+
+    // 1.获取解密历史表格
+    accessHistoryList:'/history/accessHistoryList.do',
+
 }
 
 /**
@@ -32,7 +40,7 @@ $(function () {
 
 var serverTable = {
     /**
-     * 设置表格
+     * 设置密码表格
      */
     setTable: function () {
         var settings = {
@@ -42,6 +50,44 @@ var serverTable = {
             // 全部勾选
             onClickRow: function (rows) {
                 // debugger
+            },
+            onDblClickRow: function (row) {
+                _keyMgr.modifyPassword(row);
+            },
+            queryParams: function (params) {
+                var pageNumber = 1;
+                if (params.limit != 0) {
+                    pageNumber = params.offset / params.limit + 1;
+                }
+                params.pageSize = params.limit;
+                params.pageNumber = pageNumber;
+                // params['condition_EQ_']
+                return params;
+            }
+        }
+        C.createTable("#bootstrapTable", Constants.SERVER_IP
+            +'/passwordMgr/getSiteBootstrapTable' , settings);
+    },
+    /**
+     * 更新密码表格
+     */
+    refreshTb: function () {
+        $("#bootstrapTable").bootstrapTable('refresh', {
+            url: Constants.SERVER_IP + '/passwordMgr/getSiteBootstrapTable'
+        });
+    },
+
+    /**
+     *  设置操作历史表格
+     */
+
+    setOperationHistoryTable: function () {
+        var settings = {
+            classes: 'table table-hover',
+            method: 'post',
+            contentType: 'application/x-www-form-urlencoded',
+            // 全部勾选
+            onClickRow: function (rows) {
             },
             onDblClickRow: function (row) {
                 _keyMgr.modifyPassword(row);
@@ -58,17 +104,50 @@ var serverTable = {
                 return params;
             }
         }
-        C.createTable("#bootstrapTable", Constants.SERVER_IP
-            + '/passwordMgr/getSiteBootstrapTable', settings);
+        C.createTable("#ipaccessListTable", Constants.SERVER_IP
+            + AjaxUrl.accessHistoryList, settings);
     },
-    /**
-     * 更新表格
-     */
-    refreshTb: function () {
-        $("#bootstrapTable").bootstrapTable('refresh', {
-            url: Constants.SERVER_IP + '/passwordMgr/getSiteBootstrapTable'
+    refreshOperationHistoryTable :function () {
+        $("#ipaccessListTable").bootstrapTable('refresh', {
+            url: Constants.SERVER_IP + AjaxUrl.accessHistoryList
         });
+    },
+
+    /**
+     *  设置操作历史表格
+     */
+
+    setDecodeHistoryTable: function () {
+        var settings = {
+            classes: 'table table-hover',
+            method: 'post',
+            contentType: 'application/x-www-form-urlencoded',
+            // 全部勾选
+            onClickRow: function (rows) {
+            },
+            onDblClickRow: function (row) {
+                _keyMgr.modifyPassword(row);
+            },
+
+            queryParams: function (params) {
+                var pageNumber = 1;
+                if (params.limit != 0) {
+                    pageNumber = params.offset / params.limit + 1;
+                }
+                params.pageSize = params.limit;
+                params.pageNumber = pageNumber;
+                params['condition_EQ_sysMethodName'] = 'decodePassword';
+                return params;
+            }
+        }
+        C.createTable("#decodeHistoryTable", Constants.SERVER_IP
+            + AjaxUrl.accessHistoryList, settings);
     }
+
+
+
+
+
 
 }
 
@@ -83,6 +162,11 @@ var parentVerticalTab = {
             tabidentify: 'hor_1', // The tab groups identifier
             activate: function (event) { // Callback function if tab is switched
                 var $tab = $(this);
+                if($tab.hasClass("operation_history")){
+                    serverTable.setOperationHistoryTable();
+                }else if($tab.hasClass("decode_history")){
+                    serverTable.setDecodeHistoryTable();
+                }
                 var $info = $('#nested-tabInfo2');
                 var $name = $('span', $info);
                 $name.text($tab.text());
