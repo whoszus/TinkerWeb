@@ -571,10 +571,10 @@ function numberFormatter(value, row, index) {
     return index + 1;
 }
 function typeFormatter(value, row, index) {
-    switch (index) {
+    switch (row.siteEncodeMethod) {
         case 1 :
             return 'RSA';
-            break
+            break;
         case 2 :
             return 'AES';
             break;
