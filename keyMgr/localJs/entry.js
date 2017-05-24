@@ -61,7 +61,7 @@ var serverTable = {
                 }
                 params.pageSize = params.limit;
                 params.pageNumber = pageNumber;
-                // params['condition_EQ_']
+                params['condition_LIKE_siteName'] = $("#site_address").val() || "";
                 return params;
             }
         }
@@ -215,6 +215,10 @@ function initEvent() {
 
     $("#user_sign_in").click(function () {
         _userModel.newSignInLayer();
+    });
+
+    $("#search_password").click(function () {
+        serverTable.refreshTb();
     });
 
     _userModel.loginWithCookie();
@@ -400,6 +404,7 @@ var _userModel = {
             type: "post",
             dataType: "json",
             crossDomain: true,
+            xhrFields: {withCredentials: true},
             url: Constants.SERVER_IP + AjaxUrl.loginWithAccount,
             data:data,
             success: function (param) {

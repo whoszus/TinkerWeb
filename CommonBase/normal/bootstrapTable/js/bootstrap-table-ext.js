@@ -373,6 +373,8 @@
             detailOpen: 'glyphicon-plus icon-plus',
             detailClose: 'glyphicon-minus icon-minus'
         },
+        crossDomain:false,
+        xhrFields:{withCredentials: true},
 
         rowStyle: function (row, index) {
             return {};
@@ -1880,6 +1882,8 @@
             cache: this.options.cache,
             contentType: this.options.contentType,
             dataType: this.options.dataType,
+            xhrFields:this.options.xhrFields,
+            crossDomain: this.options.crossDomain,
             success: function (res) {
                 res = calculateObjectValue(that.options, that.options.responseHandler, [res], res);
 

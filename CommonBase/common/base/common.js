@@ -10,11 +10,11 @@ window.C = window.common = (function () {
     var _createTable = function (id, url, obj) {
         var settings = {
             url: url,
+            type: "post",
             classes: 'table table-hover table-condensed',
-            method: 'post',
             undefinedText: '暂无',
             dataType: "json",
-            crossDomain:true,
+            crossDomain: true,
             xhrFields: {withCredentials: true},
             sidePagination: 'server',
             pagination: true,
