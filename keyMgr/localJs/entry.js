@@ -21,7 +21,7 @@ var AjaxUrl = {
     // 1.获取解密历史表格
     accessHistoryList:'/history/accessHistoryList.do',
 
-}
+};
 
 /**
  * 首页
@@ -273,6 +273,9 @@ var _keyMgr = {
                         serverTable.refreshTb();
                     }
                     layer.msg(param.message);
+                },
+                error:function (data) {
+                    layer.msg("网络错误，请检查网络！");
                 }
             });
         }
@@ -328,6 +331,9 @@ var _keyMgr = {
                         layer.msg(param.message);
 
                     }
+                },
+                error:function (data) {
+                    layer.msg("网络错误，请检查网络！");
                 }
             });
 
@@ -352,6 +358,9 @@ var _keyMgr = {
                         serverTable.refreshTb();
                     }
                     layer.msg(param.message);
+                },
+                error:function (data) {
+                    layer.msg("网络错误，请检查网络！");
                 }
             });
 
@@ -414,6 +423,9 @@ var _userModel = {
                 } else {
                     layer.msg(param.message);
                 }
+            },
+            error:function (data) {
+                layer.msg("网络错误，请检查网络！");
             }
         });
     },
@@ -439,6 +451,9 @@ var _userModel = {
                         _userModel.changeHeaderInfo(false);
                     }
 
+                },
+                error:function (data) {
+                    layer.msg("网络错误，请检查网络！");
                 }
             });
         }
@@ -472,6 +487,9 @@ var _userModel = {
                     layer.msg(param.message);
                     // _userModel.newSignInLayer();
                 }
+            },
+            error:function (data) {
+                layer.msg("网络错误，请检查网络！");
             }
         });
     }
