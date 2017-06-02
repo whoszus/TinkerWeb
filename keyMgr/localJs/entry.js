@@ -356,7 +356,9 @@ var _keyMgr = {
                     withCredentials: true
                 },
                 url: Constants.SERVER_IP + AjaxUrl.deletePsw,
-                data: row,
+                data: {
+                    id:row.id
+                },
                 success: function (param) {
                     if (param.success) {
                         layer.close(_keyMgr.modifyLayer);
