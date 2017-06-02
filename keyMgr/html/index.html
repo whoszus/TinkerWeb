@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Key Manage</title>
     <link type="text/css" rel="Stylesheet" href="../css/imageflow.css"/>
-    <link type="text/css" rel="STYLESHEET"
-          href="../../CommonBase/normal/Easy-Responsive-Tabs/css/easy-responsive-tabs.css">
+    <link type="text/css" rel="STYLESHEET" href="../../CommonBase/normal/Easy-Responsive-Tabs/css/easy-responsive-tabs.css">
     <link rel="stylesheet" href="../../CommonBase/normal/bootstrapTable/css/bootstrap-table.css">
     <link rel="stylesheet" href="../css/base/pageTab.css">
     <link rel="stylesheet" href="../../CommonBase/normal/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../CommonBase/normal/bootstrap/css/bootstrap.css">
+
 
 
 </head>
@@ -18,7 +18,7 @@
     <div class="top_con" style="border: none">
         <span class="title">Key Manager</span>
         <span>First blood, as indeed I am first in everything. </span>
-        <span class="head_user_ctrl" >
+        <span class="head_user_ctrl">
             <span id="user_sign_up">
                 <i class="fa fa-home fa-fw"></i>
                 <a href="javascript:void(0)" class="sign_up">Sign up</a>
@@ -29,8 +29,13 @@
             </span>
         </span>
 
-        <span class="header_user_info">
-        </span>
+        <div class="dropdown header_user_info" id="header_user_info">
+            <a data-toggle="dropdown" id="userOperation">tinker</a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="header_user_info">
+                <li><a href="#">退出' +userInfo +'</a></li>
+            </ul>
+        </div>
+
     </div>
 
 
@@ -84,10 +89,12 @@
                             <!--<th data-field="siteCode" data-width="12%" data-formatter="">任务名称</th>-->
                             <th data-field="ipAddress" data-width="12%">访问IP</th>
                             <th data-field="sysMethodName" data-width="12%">调用方法</th>
-                            <th data-field="accessDateTime" >时间</th>
-                            <th data-field="isRefuse" data-formatter="typeFormatter" data-width="12%">是否黑名单</th>
+                            <th data-field="accessDateTime">时间</th>
+                            <!--<th data-field="isRefuse" data-formatter="typeFormatter" data-width="12%">是否黑名单</th>-->
                             <th data-field="accessParams" data-formatter="" data-width="12%">调用参数</th>
-                            <th data-align="center" data-formatter="operationsFormatter" data-events="handleMenuEvents">操作</th>
+                            <th data-align="center" data-formatter="operationsFormatter" data-events="handleMenuEvents">
+                                操作
+                            </th>
                         </tr>
                         </thead>
                     </table>
@@ -106,7 +113,7 @@
                             <!--<th data-field="siteCode" data-width="12%" data-formatter="">任务名称</th>-->
                             <th data-field="ipAddress" data-width="12%">解密IP</th>
                             <!--<th data-field="sysMethodName" data-width="12%">调用方法</th>-->
-                            <th data-field="accessDateTime" >解密时间</th>
+                            <th data-field="accessDateTime">解密时间</th>
                             <!--<th data-field="isRefuse" data-formatter="typeFormatter" data-width="12%">是否黑名单</th>-->
                             <th data-field="accessParams" data-formatter="" data-width="12%">调用参数</th>
                             <!--<th data-align="center" data-formatter="operationsFormatter" data-events="handleMenuEvents">操作</th>-->
@@ -191,7 +198,7 @@
         <select id="siteEncodeMethod" class="form-control site_input_ctr" name="siteEncodeMethod" style="" value="">
             <option value="1">RSA</option>
             <option value="2">AES</option>
-            <option value="3">MD5+RSA</option>
+            <!--<option value="3">MD5+RSA</option>-->
             <option value="0">随机选择算法类型</option>
         </select>
 
@@ -207,6 +214,8 @@
 
 
 <script type="text/javascript" src="../../CommonBase/normal/bootstrapTable/js/bootstrap-table-ext.js"></script>
+
+<script src="../../CommonBase/normal/bootstrap/js/bootstrap.js"></script>
 
 <script type="text/javascript" src="../../CommonBase/normal/Easy-Responsive-Tabs/js/easyResponsiveTabs.js"></script>
 <script type="text/javascript" src="../localJs/entry.js"></script>

@@ -221,6 +221,13 @@ function initEvent() {
         serverTable.refreshTb();
     });
 
+
+    $("#header_user_info").click(function () {
+
+    });
+
+
+
     _userModel.loginWithCookie();
 
 
@@ -460,10 +467,19 @@ var _userModel = {
     },
     changeHeaderInfo: function (info, userInfo) {
         if (info) {
-            var str = '<i class="fa fa-github fa-fw fa-3x"></i>' + userInfo;
-            $('.header_user_info').append(str);
+            var str = '<i class="fa fa-github fa-fw fa-3x"></i>' +
+                //
+                // '<a href="#" class="dropdown-toggle" data-toggle="dropdown">Java <b class="caret"></b> </a>'+
+                //
+                //     '<ul class="dropdown-menu"> <li><a href="#">EJB</a></li> </ul>';
+                // '<span data-toggle="dropdown" id="userOperation">' + userInfo +'</span>' +
+                // ' <ul class="dropdown-menu" role="menu" aria-labelledby="userOperation">' +
+                // '<li><a href="#">退出' +userInfo +'</a></li>'+
+                // '</ul>';
+            // $('.header_user_info').empty();
+            // $('.header_user_info').append(str);
             $('.head_user_ctrl').css("display", 'none');
-            $('.header_user_info').css('display', 'inline-block');
+            $('#header_user_info').css('display', 'inline-block');
 
         } else {
             $('.head_user_ctrl').css("display", 'inline-block');
