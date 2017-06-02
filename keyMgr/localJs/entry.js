@@ -90,7 +90,7 @@ var serverTable = {
             onClickRow: function (rows) {
             },
             onDblClickRow: function (row) {
-                _keyMgr.modifyPassword(row);
+                // _keyMgr.modifyPassword(row);
             },
 
             queryParams: function (params) {
@@ -126,7 +126,7 @@ var serverTable = {
             onClickRow: function (rows) {
             },
             onDblClickRow: function (row) {
-                _keyMgr.modifyPassword(row);
+                // _keyMgr.modifyPassword(row);
             },
 
             queryParams: function (params) {
@@ -222,9 +222,7 @@ function initEvent() {
     });
 
 
-    $("#header_user_info").click(function () {
 
-    });
 
 
 
@@ -435,6 +433,8 @@ var _userModel = {
                 layer.msg("网络错误，请检查网络！");
             }
         });
+
+
     },
     /**
      * 用户注册
@@ -467,20 +467,15 @@ var _userModel = {
     },
     changeHeaderInfo: function (info, userInfo) {
         if (info) {
-            var str = '<i class="fa fa-github fa-fw fa-3x"></i>' +
-                //
-                // '<a href="#" class="dropdown-toggle" data-toggle="dropdown">Java <b class="caret"></b> </a>'+
-                //
-                //     '<ul class="dropdown-menu"> <li><a href="#">EJB</a></li> </ul>';
-                // '<span data-toggle="dropdown" id="userOperation">' + userInfo +'</span>' +
-                // ' <ul class="dropdown-menu" role="menu" aria-labelledby="userOperation">' +
-                // '<li><a href="#">退出' +userInfo +'</a></li>'+
-                // '</ul>';
-            // $('.header_user_info').empty();
-            // $('.header_user_info').append(str);
+            var str = '<i class="fa fa-github fa-fw fa-3x"></i>' +userInfo+
+                    '<span id="header_user_logout"  style="margin-left: 10px"><i class="fa fa-close fa-fw"></i><span>';
+            $('.header_user_info').empty();
+            $('.header_user_info').append(str);
             $('.head_user_ctrl').css("display", 'none');
             $('#header_user_info').css('display', 'inline-block');
-
+            $("#header_user_logout").on('click',function () {
+                _userModel.logout(userInfo);
+            });
         } else {
             $('.head_user_ctrl').css("display", 'inline-block');
             $('.header_user_info').css('display', 'none');
@@ -508,6 +503,26 @@ var _userModel = {
                 layer.msg("网络错误，请检查网络！");
             }
         });
+    },
+    /**
+     * 用户退出
+     */
+    logout:function (userInfo) {
+        //清除cookie
+        // for (var it in $.cookie()) $.removeCookie(it);
+
+        var layeruserlogout =layer.confirm("确定退出 " +userInfo,function () {
+            var mydate = new Date();
+            mydate.setTime(mydate.getTime() - 1);
+            document.cookie = "token=; Path=/; expires=" + mydate.toGMTString();
+
+            $('.head_user_ctrl').css("display", 'inline-block');
+            $('.header_user_info').css('display', 'none');
+            layer.close(layeruserlogout);
+        });
+
+
+
     }
 
 

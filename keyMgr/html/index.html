@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>Key Manage</title>
     <link type="text/css" rel="Stylesheet" href="../css/imageflow.css"/>
-    <link type="text/css" rel="STYLESHEET" href="../../CommonBase/normal/Easy-Responsive-Tabs/css/easy-responsive-tabs.css">
+    <link type="text/css" rel="STYLESHEET"
+          href="../../CommonBase/normal/Easy-Responsive-Tabs/css/easy-responsive-tabs.css">
     <link rel="stylesheet" href="../../CommonBase/normal/bootstrapTable/css/bootstrap-table.css">
     <link rel="stylesheet" href="../css/base/pageTab.css">
     <link rel="stylesheet" href="../../CommonBase/normal/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../CommonBase/normal/bootstrap/css/bootstrap.css">
-
 
 
 </head>
@@ -29,12 +29,9 @@
             </span>
         </span>
 
-        <div class="dropdown header_user_info" id="header_user_info">
-            <a data-toggle="dropdown" id="userOperation">tinker</a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="header_user_info">
-                <li><a href="#">退出' +userInfo +'</a></li>
-            </ul>
+        <div class="header_user_info" id="header_user_info">
         </div>
+
 
     </div>
 
@@ -121,6 +118,28 @@
                         </thead>
                     </table>
                 </div>
+            </div>
+            <div>
+                <p>
+                    常见的加密算法可以分成三类，对称加密算法，非对称加密算法和Hash算法。
+                </p>
+                <p>
+                    对称加密对称加密算法是应用较早的加密算法,技术成熟，只用一个密钥用来加密和解密信息。对称加密算法的优点在于算法公开、计算量小、加密速度快、加密效率高。对称加密算法的安全性取决于双方都必须完全的相信对方，保证密钥不泄露，并都持有这个密钥的备份。但要达到这种信任的级别并不是想像中的那么简单。常见的对称加密算法：DES、IDEA、AES和RC4等。
+                </p>
+                <p>
+                    非对称加密是使用两把完全不同但又是完全匹配的一对钥匙——公钥和私钥来进行加解密。其核心就是加密密钥不等于解密密钥，
+                    且无法从任意一个密钥推导出另一个密钥，这样就大大加强了信息保护的力度。假设两个用户要加密交换数据，双方交换公钥，
+                    如果用公开密钥对数据进行加密，只有用对应的私有密钥才能解密；如果用私有密钥对数据进行加密，那么只有用对应的公开密钥才能解密。
+                    非对称加密的缺点是加密的速度非常慢，因为需要强烈的数学运算程序。如果一个用户需要使用非对称加密，那么即使比较少量的信息可以也要花上几个小时的时间。常见的非对称加密算法：RSA、Diffie-Hellman和ECC等。
+                </p>
+                <p>
+                    我们应该根据自己的使用特点来确定，由于非对称加密算法的运行速度比对称加密算法的速度慢很多，当我们需要加密大量的数据时，建议采用对称加密算法，提高加解密速度。
+                    对称加密算法不能实现签名，因此签名只能使用非对称算法。
+                    由于对称加密算法的密钥管理是一个复杂的过程，密钥的管理直接决定着他的安全性，因此当数据量很小时，我们可以考虑采用非对称加密算法。
+                    在实际的操作过程中，我们通常采用的方式是：采用非对称加密算法管理对称算法的密钥，然后用对称加密算法加密数据，这样我们就集成了两类加密算法的优点，既实现了加密速度快的优点，又实现了安全方便管理密钥的优点。
+                    如果在选定了加密算法后，那采用多少位的密钥呢？一般来说，密钥越长，运行的速度就越慢，应该根据的我们实际需要的安全级别来选择，一般来说，RSA建议采用1024位的数字，ECC建议采用160位，AES采用128为即可。
+
+                </p>
             </div>
         </div>
     </div>
